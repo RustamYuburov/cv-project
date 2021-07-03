@@ -1,13 +1,12 @@
 import React from 'react';
+import githubLogo from '../images/githubLogo.png'
 
-const Footer = (props) => {
-  const {link, src, alt} = props;
-
+const Footer = () => {
   return (
     <div className='footerDiv'> 
       <span className='footerText'>This project is made by Rustam Yuburov</span>
-      <a href={link} target='_blank' className='footerLink'>
-        <img className='footerIcon' src={src} alt={alt} />
+      <a href='https://github.com/RustamYuburov' target='_blank' className='footerLink'>
+        <img className='footerIcon' src={githubLogo} alt='Github logo' />
       </a>
     </div>
   )

@@ -1,11 +1,10 @@
 import React from 'react';
+import resumeIcon from '../images/resume-icon.png'
 
-const Header = (props) => {
-  const {src, alt} = props;
-
+const Header = () => {
   return (
     <div className='headerDiv'>
-      <img src={src} alt={alt} />
+      <img src={resumeIcon} alt='icon resume' />
       <h2>CV MAKER</h2>
     </div>
   )
