@@ -1,6 +1,6 @@
 # This is CV Project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). 
+The CV project for making CV. This project was bootstraped with React.
 
 
 ### `npm start`
