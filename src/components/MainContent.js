@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import uniqid from 'uniqid'
+import GeneralInfoForm from './GeneralInfo/GeneralInfoForm'
 
 class MainContent extends Component {
    constructor(props) {
@@ -7,9 +8,13 @@ class MainContent extends Component {
    }
 
    render() {
+
      return(
        <div className='mainContent'>
-         <p>here's gonna be main content</p>
+         <div className='generalInfo'>
+          <GeneralInfoForm />
+         </div>
+         <hr/>
        </div>
      )
    }
