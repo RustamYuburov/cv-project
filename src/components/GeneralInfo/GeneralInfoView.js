@@ -1,18 +1,22 @@
 import React, { Component } from 'react';
 
-class GeneralInfoView extends Component {
-  constructor(props) {
-    super(props);
-  }
+const GeneralInfoView = (props) => {
+
+  const { firstName, lastName, occupation,
+          address, phone, email } = props.info;
 
 
-  render() {
+
     return(
-      <div>
-        Hello
+      <div className='generalInfoView'>
+        <div>{firstName+ ' ' +lastName}</div>
+        <div>{occupation}</div>
+        <div>{address}</div>
+        <div>{phone}</div>
+        <div>{email}</div>
+        <button  onClick={(e) => props.editInfo(e)} className='buttons generalEditBtn'>EDIT</button>
       </div>
     ) 
-  }
 }
 
 export default GeneralInfoView

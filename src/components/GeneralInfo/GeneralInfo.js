@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import GeneralInfoForm from './GeneralInfoForm';
 import GeneralInfoView from './GeneralInfoView';
+import '../../styles/GeneralInfoStyle.css'
 class GeneralInfo extends Component {
   constructor(props) {
     super(props);
@@ -10,24 +11,46 @@ class GeneralInfo extends Component {
       occupation: '',
       address: '',
       phone: '',
-      email: ''
+      email: '',
+      showView: false
     }
   }
 
-  handlePersonalChange = (field, e) => {
-    this.setState(prevState => {
-      [field] = e.target.value
+  handlePersonalChange = (e) => {
+    const {name, value} = e.target;
+    this.setState({
+      [name]: value,
     })
-    console.log(this.state.generalInfo)
   }
 
+  changeComponent = (e) => {
+    e.preventDefault()
+    this.setState(prevState => ({
+      showView: !prevState.showView
+    }))
+    console.log(this.state.showView)
+  }
 
   render() {
+    let status = this.state.showView;
+    console.log(status)
+    let displayComponent;
+    if(!status) {
+      displayComponent = <GeneralInfoForm handleChange={this.handlePersonalChange}
+                                      saveInfo={this.changeComponent}
+                                      info={this.state}
+                                      />;
+    } else {
+      displayComponent = <GeneralInfoView info={this.state}
+                                          editInfo={this.changeComponent}
+                                          />;
+    }
+
     return(
       <div>
-        Hello
+        {displayComponent}
       </div>
-    ) 
+    )
   }
 }
 
