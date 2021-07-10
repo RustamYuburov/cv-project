@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import uniqid from 'uniqid'
+import GeneralInfo from './GeneralInfo/GeneralInfo';
 import GeneralInfoForm from './GeneralInfo/GeneralInfoForm'
 
 class MainContent extends Component {
@@ -12,7 +13,7 @@ class MainContent extends Component {
      return(
        <div className='mainContent'>
          <div className='generalInfo'>
-          <GeneralInfoForm />
+          <GeneralInfo />
          </div>
          <hr/>
        </div>
