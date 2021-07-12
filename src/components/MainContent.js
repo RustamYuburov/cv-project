@@ -1,14 +1,8 @@
-import React, { Component } from 'react';
-import uniqid from 'uniqid'
+import React from 'react';
 import GeneralInfo from './GeneralInfo/GeneralInfo';
-import GeneralInfoForm from './GeneralInfo/GeneralInfoForm'
+import EducationInfo from './EducationInfo/EducationInfo';
 
-class MainContent extends Component {
-   constructor(props) {
-     super(props)
-   }
-
-   render() {
+const MainContent = (props) => {
 
      return(
        <div className='mainContent'>
@@ -16,9 +10,20 @@ class MainContent extends Component {
           <GeneralInfo />
          </div>
          <hr/>
+         <div className='educationInfo'>
+           <EducationInfo />
+         </div>
+         <hr/>
+         <div className='workExperienceInfo'>
+           {/* <WorkExperienceInfo /> */}
+         </div>
+         <hr/>
+         <div className='skills'>
+           {/* <Skills /> */}
+         </div>
+         <hr/>
        </div>
      )
-   }
 }
 
 export default MainContent

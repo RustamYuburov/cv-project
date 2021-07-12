@@ -5,7 +5,11 @@ const Footer = () => {
   return (
     <div className='footerDiv'> 
       <span className='footerText'>This project is made by Rustam Yuburov</span>
-      <a href='https://github.com/RustamYuburov' target='_blank' className='footerLink'>
+      <a href='https://github.com/RustamYuburov'
+        target='_blank'
+        rel='noreferrer'
+        className='footerLink'
+        >
         <img className='footerIcon' src={githubLogo} alt='Github logo' />
       </a>
     </div>
