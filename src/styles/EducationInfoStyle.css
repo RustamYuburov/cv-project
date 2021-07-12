@@ -1,0 +1,4 @@
+.educationInfo {
+  display: flex;
+  flex-direction: column;
+}
