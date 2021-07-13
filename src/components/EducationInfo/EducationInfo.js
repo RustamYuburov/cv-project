@@ -1,35 +1,61 @@
 import React, { Component } from 'react';
+import uniqid from 'uniqid';
 import '../../styles/EducationInfoStyle.css'
-import GeneralInfoView from '../GeneralInfo/GeneralInfoView';
+import EducationInfoView from './EducationInfoView';
+import EducationInfoForm from './EducationInfoForm';
 
 class EducationInfo extends Component {
   constructor(props) {
     super(props)
 
-    this.state = {
+    this.state = {      
+      eduExperience: {
+        school: '',
+        degree: '',
+        subject: '',
+        startDate: '',
+        endDate: '',
+        id: uniqid(),
+      },
       educations: [],
+      educationForms: []
     }
   }
 
-  saveEducation = (education) => {
+  saveEducation = (educationId) => {
     this.setState({
-      educations: this.state.educations.concat(education)
+      educations: this.state.educations.concat(
+        this.state.educationForms.filter(
+          educationForms => educationForms.id === educationId
+        )),
+      educationForms: this.state.educationForms.filter(
+        educationForms => educationForms.id !== educationId
+      ),
+    })
+  }
+
+  addEducation = (e) => {
+    e.preventDefault();
+    this.setState({
+      educationForms: this.state.educationForms.concat(this.state.eduExperience)
     })
   }
 
   render() {
-    const educationsRenders = this.state.educations.map(education => <GeneralInfoView info={education}/>);
+    const educationViews = this.state.educations.map(education => <EducationInfoView info={education}/>);
+    const educationForms = this.state.educationForms.map(educationForm => <EducationInfoForm info={educationForm}/>);
 
     return(
       <div className='educationInfo'>
         <div className='educationInfoViewDiv'>
           Here's gonna be info view
-          {educationsRenders}
+          {educationViews}
         </div>
         <div className='educationInfoFormDiv'>
           Here's gonna be form
+          {educationForms}
         </div>
-        <button className='buttons '>Add More</button>
+        <button onClick={(e) => this.addEducation(e)} className='buttons '>Add More</button>
       </div>
     )
   }
