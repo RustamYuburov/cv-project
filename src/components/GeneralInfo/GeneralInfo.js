@@ -33,7 +33,6 @@ class GeneralInfo extends Component {
 
   render() {
     let status = this.state.showView;
-    console.log(status)
     let displayComponent;
     if(!status) {
       displayComponent = <GeneralInfoForm handleChange={this.handlePersonalChange}

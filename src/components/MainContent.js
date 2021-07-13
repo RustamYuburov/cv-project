@@ -21,7 +21,6 @@ const MainContent = (props) => {
          <div className='skills'>
            {/* <Skills /> */}
          </div>
-         <hr/>
        </div>
      )
 }
