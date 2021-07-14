@@ -9,27 +9,17 @@ class EducationInfo extends Component {
     super(props)
 
     this.state = {      
-      eduExperience: {
-        school: '',
-        degree: '',
-        subject: '',
-        startDate: '',
-        endDate: '',
-        id: uniqid(),
-      },
       educations: [],
       educationForms: []
     }
   }
 
-  saveEducation = (educationId) => {
+  saveEducation = (e, education) => {
+    e.preventDefault()
     this.setState({
-      educations: this.state.educations.concat(
-        this.state.educationForms.filter(
-          educationForms => educationForms.id === educationId
-        )),
+      educations: this.state.educations.concat(education),
       educationForms: this.state.educationForms.filter(
-        educationForms => educationForms.id !== educationId
+        educationForms => educationForms.id !== education.id
       ),
     })
   }
@@ -37,25 +27,73 @@ class EducationInfo extends Component {
   addEducation = (e) => {
     e.preventDefault();
     this.setState({
-      educationForms: this.state.educationForms.concat(this.state.eduExperience)
+      educationForms: this.state.educationForms.concat({school: '',
+                                                        degree: '',
+                                                        subject: '',
+                                                        startDate: '',
+                                                        endDate: '',
+                                                        id: uniqid(),
+                                                      })
     })
   }
 
-  render() {
-    const educationViews = this.state.educations.map(education => <EducationInfoView info={education}/>);
-    const educationForms = this.state.educationForms.map(educationForm => <EducationInfoForm info={educationForm}/>);
+  cancelEducation = (e) => {
+    this.setState({
+      educationForms: this.state.educationForms.filter(
+        education => education.id !== e.target.name
+      )
+    })
+  }
+
+  editEducation = (e) => {
+    e.preventDefault();
+    let eduInfo = this.state.educations.filter(education => education.id === e.target.name)
+    this.setState({
+      educationForms: this.state.educationForms.concat(eduInfo),
+      educations: this.state.educations.filter(education => education.id !== e.target.name),
+    })
+    console.log(eduInfo)
+  }
+  
+  deleteEducation = (e) => {
+    e.preventDefault();
+    this.setState({
+      educations: this.state.educations.filter(
+        education => education.id !== e.target.name
+        )
+      })
+    }
+  
+    
+    render() {
+      console.log(this.state)
+      const educationViews = this.state.educations.map(
+        education => <EducationInfoView
+        info={education} 
+                                                    handleDelete={this.deleteEducation}
+                                                    handleEdit={this.editEducation}
+                                                    />
+    );
+    const educationForms = this.state.educationForms.map(
+                                  educationForm => <EducationInfoForm
+                                                    saveEdu={this.saveEducation}
+                                                    id={educationForm.id}
+                                                    handleCancel={this.cancelEducation}
+                                                    info={educationForm}
+                                                    />
+    );
 
     return(
       <div className='educationInfo'>
         <div className='educationInfoViewDiv'>
-          Here's gonna be info view
           {educationViews}
+          
         </div>
         <div className='educationInfoFormDiv'>
-          Here's gonna be form
           {educationForms}
         </div>
-        <button onClick={(e) => this.addEducation(e)} className='buttons '>Add More</button>
+        <button onClick={(e) => this.addEducation(e)}
+                className='buttons addBtns'>Add More</button>
       </div>
     )
   }
