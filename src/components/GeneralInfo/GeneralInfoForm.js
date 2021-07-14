@@ -6,7 +6,6 @@ const GeneralInfoForm =(props) => {
   const { firstName, lastName, occupation,
           address, phone, email } = props.info;
 
-
     return(
       <div className='generalInfoForm'>
         <form  onSubmit={props.saveInfo} className='formGeneral'>

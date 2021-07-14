@@ -5,15 +5,13 @@ const GeneralInfoView = (props) => {
   const { firstName, lastName, occupation,
           address, phone, email } = props.info;
 
-
-
     return(
       <div className='generalInfoView'>
-        <div>{firstName+ ' ' +lastName}</div>
-        <div>{occupation}</div>
-        <div>{address}</div>
-        <div>{phone}</div>
-        <div>{email}</div>
+        <div className='generalInfoViews'><b>Name</b>: {firstName+ ' ' +lastName}</div>
+        <div className='generalInfoViews'><b>Current occupation</b>: {occupation}</div>
+        <div className='generalInfoViews'><b>Current address</b>: {address}</div>
+        <div className='generalInfoViews'><b>Phone number</b>: {phone}</div>
+        <div className='generalInfoViews'><b>Email</b>: {email}</div>
         <button  onClick={(e) => props.editInfo(e)} className='buttons generalEditBtn'>EDIT</button>
       </div>
     ) 

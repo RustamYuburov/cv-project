@@ -36,9 +36,9 @@ class GeneralInfo extends Component {
     let displayComponent;
     if(!status) {
       displayComponent = <GeneralInfoForm handleChange={this.handlePersonalChange}
-                                      saveInfo={this.changeComponent}
-                                      info={this.state}
-                                      />;
+                                          saveInfo={this.changeComponent}
+                                          info={this.state}
+                                          />;
     } else {
       displayComponent = <GeneralInfoView info={this.state}
                                           editInfo={this.changeComponent}
