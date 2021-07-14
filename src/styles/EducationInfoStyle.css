@@ -2,3 +2,57 @@
   display: flex;
   flex-direction: column;
 }
+
+.deleteEduInfoBtn,
+.editEduInfoBtn,
+.saveEduInfoBtn,
+.addBtns {
+  margin: 10px 20px;
+}
+
+.cancelEduInfoBtn {
+  margin: 5px 20px;
+}
+
+/* Inputs */
+.educationInfoForm {
+  /* border:solid black; */
+  margin: auto 10px;
+  padding: 10px;
+}
+
+.educationInfoInputs {
+  display: flex;
+  flex-direction: column;
+  margin: 5px;
+}
+
+.educationInfoInputs label {
+  font-size: 20px;
+  font-family: 'Josefin Sans', Arial, Helvetica, sans-serif;
+  font-weight: 550;
+}
+
+.educationInfoInputs input {
+  font-size: 23px;
+  font-family: 'Josefin Sans', Arial, Helvetica, sans-serif;
+  font-weight: 550;
+  border-radius: 5px;
+  border: solid 1px;
+  padding: 3px 7px;
+  outline: none;
+}
+
+/* Education Info View */
+
+.educationInfoView {
+  display: flex;
+  flex-direction: column;
+  /* border: black solid; */
+}
+
+.educationInfoViews {
+  font-size: 25px;
+  margin: 5px auto 5px 20px;
+  font-family: 'Josefin Sans', Arial, Helvetica, sans-serif;
+}

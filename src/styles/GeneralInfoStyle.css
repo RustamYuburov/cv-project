@@ -2,7 +2,7 @@
 
 .generalInfo {
   /* border:solid black; */
-  margin: auto auto;
+  margin: auto 10px;
   padding: 20px 5px 0px 5px;
 }
 
@@ -25,7 +25,7 @@
 }
 
 .generalInfoInputs input {
-  font-size: 20px;
+  font-size: 23px;
   font-family: 'Josefin Sans', Arial, Helvetica, sans-serif;
   font-weight: 550;
   border-radius: 5px;
@@ -33,7 +33,20 @@
   padding: 3px 7px;
   outline: none;
 }
-
+.generalEditBtn,
 .generalSaveBtn {
   margin: 10px 20px;
+}
+
+/* GeneralInfoView */
+.generalInfoView {
+  display: flex;
+  flex-direction: column;
+  /* border: black solid; */
+}
+
+.generalInfoViews {
+  font-size: 25px;
+  margin: 5px auto 5px 20px;
+  font-family: 'Josefin Sans', Arial, Helvetica, sans-serif;
 }
