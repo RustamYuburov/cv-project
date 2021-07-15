@@ -2,6 +2,9 @@
 
 The CV project for making CV. This project was bootstraped with React.
 
+## Live Demo available down here:
+[CV Maker](https://rustamyuburov.github.io/cv-project/)
+
 
 ### `npm start`
 
