@@ -66,7 +66,6 @@ class EducationInfo extends Component {
   
     
     render() {
-      console.log(this.state)
       const educationViews = this.state.educations.map(
         education => <EducationInfoView
         info={education} 
