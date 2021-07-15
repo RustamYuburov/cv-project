@@ -1,0 +1,56 @@
+.experienceInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.deleteExpInfoBtn,
+.editExpInfoBtn,
+.saveExpInfoBtn,
+.addBtns {
+  margin: 10px 20px;
+}
+
+.cancelExpInfoBtn {
+  margin: 5px 20px;
+}
+
+/* Inputs */
+.experienceInfoForm {
+  margin: auto 10px;
+  padding: 10px;
+}
+
+.experienceInfoInputs {
+  display: flex;
+  flex-direction: column;
+  margin: 5px;
+}
+
+.experienceInfoInputs label {
+  font-size: 20px;
+  font-family: 'Josefin Sans', Arial, Helvetica, sans-serif;
+  font-weight: 550;
+}
+
+.experienceInfoInputs input {
+  font-size: 23px;
+  font-family: 'Josefin Sans', Arial, Helvetica, sans-serif;
+  font-weight: 550;
+  border-radius: 5px;
+  border: solid 1px;
+  padding: 3px 7px;
+  outline: none;
+}
+
+/* Experience Info View */
+
+.experienceInfoView {
+  display: flex;
+  flex-direction: column;
+}
+
+.experienceInfoViews {
+  font-size: 25px;
+  margin: 5px auto 5px 20px;
+  font-family: 'Josefin Sans', Arial, Helvetica, sans-serif;
+}

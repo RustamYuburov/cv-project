@@ -33,7 +33,7 @@
 .skill {
   display: flex;
   padding: 5px;
-  margin: 20px 20px;
+  margin: 10px 20px;
 }
 
 .skill li {
@@ -44,8 +44,6 @@
 
 .skill button {
   cursor: pointer;
-  /* position: absolute; */
-  /* right: 30px; */
   font-size: 25px;
   font-weight: 600;
   border-radius: 50%;
