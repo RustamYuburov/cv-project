@@ -1,7 +1,7 @@
 import React from 'react';
 import GeneralInfo from './GeneralInfo/GeneralInfo';
 import EducationInfo from './EducationInfo/EducationInfo';
-// import WorkExperience from './WorkExperience/WorkExperience';
+import WorkExperience from './WorkExperience/WorkExperience';
 import Skills from './Skills/Skills';
 
 const MainContent = () => {
@@ -20,7 +20,7 @@ const MainContent = () => {
          <hr/>
          <div className='workExperienceInfo'>
            <h1>Work Experience</h1>
-           {/* <WorkExperienceInfo /> */}
+           <WorkExperience />
          </div>
          <hr/>
          <div className='skills'>
