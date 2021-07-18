@@ -67,10 +67,11 @@ class EducationInfo extends Component {
     
     render() {
       const educationViews = this.state.educations.map(
-        education => <EducationInfoView
-        info={education} 
+                                      education => <EducationInfoView
+                                                    info={education} 
                                                     handleDelete={this.deleteEducation}
                                                     handleEdit={this.editEducation}
+                                                    key={education.id}
                                                     />
     );
     const educationForms = this.state.educationForms.map(
@@ -79,6 +80,7 @@ class EducationInfo extends Component {
                                                     id={educationForm.id}
                                                     handleCancel={this.cancelEducation}
                                                     info={educationForm}
+                                                    key={educationForm.id}
                                                     />
     );
 

@@ -70,6 +70,7 @@ class WorkExperience extends Component {
                                                 info={experience} 
                                                 handleDelete={this.deleteExperience}
                                                 handleEdit={this.editExperience}
+                                                key={experience.id}
                                                 />
     );
     const experienceForms = this.state.experienceForms.map(
@@ -78,6 +79,7 @@ class WorkExperience extends Component {
                                                     id={experienceForm.id}
                                                     handleCancel={this.cancelExperience}
                                                     info={experienceForm}
+                                                    key={experienceForm.id}
                                                     />
     );
 
