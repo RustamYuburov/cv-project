@@ -47,6 +47,8 @@
 .experienceInfoView {
   display: flex;
   flex-direction: column;
+  border: black solid;
+  margin: 20px 5px;
 }
 
 .experienceInfoViews {
