@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import GeneralInfoForm from './GeneralInfoForm';
 import GeneralInfoView from './GeneralInfoView';
-import '../../styles/GeneralInfoStyle.css'
+import '../../styles/GeneralInfoStyle.css';
 class GeneralInfo extends Component {
   constructor(props) {
     super(props);
@@ -12,45 +12,47 @@ class GeneralInfo extends Component {
       address: '',
       phone: '',
       email: '',
-      showView: false
-    }
+      showView: false,
+    };
   }
 
   handlePersonalChange = (e) => {
-    const {name, value} = e.target;
-    this.setState({
-      [name]: value,
-    })
-  }
+    this.setState((prevState) => {
+      const { name, value } = e.target;
+      return {
+        ...prevState,
+        [name]: value,
+      };
+    });
+  };
 
   changeComponent = (e) => {
-    e.preventDefault()
-    this.setState(prevState => ({
-      showView: !prevState.showView
-    }))
-    console.log(this.state.showView)
-  }
+    e.preventDefault();
+    this.setState((prevState) => ({
+      ...prevState,
+      showView: !prevState.showView,
+    }));
+  };
 
   render() {
     let status = this.state.showView;
     let displayComponent;
-    if(!status) {
-      displayComponent = <GeneralInfoForm handleChange={this.handlePersonalChange}
-                                          saveInfo={this.changeComponent}
-                                          info={this.state}
-                                          />;
+    if (!status) {
+      displayComponent = (
+        <GeneralInfoForm
+          handleChange={this.handlePersonalChange}
+          saveInfo={this.changeComponent}
+          info={this.state}
+        />
+      );
     } else {
-      displayComponent = <GeneralInfoView info={this.state}
-                                          editInfo={this.changeComponent}
-                                          />;
+      displayComponent = (
+        <GeneralInfoView info={this.state} editInfo={this.changeComponent} />
+      );
     }
 
-    return(
-      <div>
-        {displayComponent}
-      </div>
-    )
+    return <div>{displayComponent}</div>;
   }
 }
 
-export default GeneralInfo
+export default GeneralInfo;
