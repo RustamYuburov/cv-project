@@ -1,58 +1,46 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import GeneralInfoForm from './GeneralInfoForm';
 import GeneralInfoView from './GeneralInfoView';
 import '../../styles/GeneralInfoStyle.css';
-class GeneralInfo extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      firstName: '',
-      lastName: '',
-      occupation: '',
-      address: '',
-      phone: '',
-      email: '',
-      showView: false,
-    };
-  }
 
-  handlePersonalChange = (e) => {
-    this.setState((prevState) => {
-      const { name, value } = e.target;
-      return {
-        ...prevState,
-        [name]: value,
-      };
-    });
-  };
+const GeneralInfo = () => {
+  const [showView, setShowView] = useState(false);
+  const [stateForm, setStateForm] = useState({
+    firstName: '',
+    lastName: '',
+    occupation: '',
+    address: '',
+    phone: '',
+    email: '',
+  });
 
-  changeComponent = (e) => {
-    e.preventDefault();
-    this.setState((prevState) => ({
+  const handlePersonalChange = (e) => {
+    const { name, value } = e.target;
+    setStateForm((prevState) => ({
       ...prevState,
-      showView: !prevState.showView,
+      [name]: value,
     }));
   };
 
-  render() {
-    let status = this.state.showView;
-    let displayComponent;
-    if (!status) {
-      displayComponent = (
-        <GeneralInfoForm
-          handleChange={this.handlePersonalChange}
-          saveInfo={this.changeComponent}
-          info={this.state}
-        />
-      );
-    } else {
-      displayComponent = (
-        <GeneralInfoView info={this.state} editInfo={this.changeComponent} />
-      );
-    }
+  const changeComponent = (e) => {
+    e.preventDefault();
+    setShowView(!showView);
+  };
 
-    return <div>{displayComponent}</div>;
+  if (!showView) {
+    return (
+      <GeneralInfoForm
+        handleChange={handlePersonalChange}
+        saveInfo={changeComponent}
+        info={stateForm}
+      />
+    );
+  } else {
+    return (
+      <GeneralInfoView info={stateForm} editInfo={changeComponent} />
+    );
   }
-}
+
+};
 
 export default GeneralInfo;
