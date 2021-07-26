@@ -1,139 +1,106 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import uniqid from 'uniqid';
 import '../../styles/WorkExperienceStyle.css';
 import WorkExperienceView from './WorkExperienceView';
 import WorkExperienceForm from './WorkExperienceForm';
 
-class WorkExperience extends Component {
-  constructor(props) {
-    super(props);
+const WorkExperience = () => {
+  const [experiences, setExperiences] = useState([]);
+  const [experienceForms, setExperienceForms] = useState([]);
 
-    this.state = {
-      experiences: [],
-      experienceForms: [],
-    };
-  }
-
-  handleExpInput = (e, id) => {
-    this.setState((prevState) => {
-      const { name, value } = e.target;
-      const updatedExpForm = prevState.experienceForms.map((forms) => {
-        if (forms.id === id) {
-          return {
-            ...forms,
-            [name]: value,
-          };
-        }
-        return forms;
-      });
-
-      return {
-        ...this.state,
-        experienceForms: updatedExpForm,
-      };
+  const handleExpInput = (e, id) => {
+    const { name, value } = e.target;
+    const updatedExpForm = experienceForms.map((form) => {
+      if (form.id === id) {
+        return {
+          ...form,
+          [name]: value,
+        };
+      }
+      return form;
     });
+    setExperienceForms(updatedExpForm);
   };
 
-  saveExperience = (e, id) => {
-    e.preventDefault();
-    this.setState((prevState) => {
-      const experience = prevState.experienceForms.filter(
-        (form) => form.id === id
-      );
-      return {
-        experiences: prevState.experiences.concat(experience),
-        experienceForms: prevState.experienceForms.filter(
-          (experienceForms) => experienceForms.id !== id
-        ),
-      };
-    });
-  };
-
-  addExperience = (e) => {
-    this.setState({
-      experienceForms: this.state.experienceForms.concat({
-        position: '',
-        company: '',
-        mainTasks: '',
+  const addExperience = () => {
+    setExperienceForms(
+      experienceForms.concat({
+        school: '',
+        degree: '',
+        subject: '',
         startDate: '',
         endDate: '',
         id: uniqid(),
-      }),
-    });
-  };
-
-  cancelExperience = (e) => {
-    this.setState((prevState) => {
-      const updateExpForm = prevState.experienceForms.filter(
-        (experience) => experience.id !== e.target.name
-      );
-      return {
-        ...prevState,
-        experienceForms: updateExpForm,
-      };
-    });
-  };
-
-  editExperience = (e) => {
-    e.preventDefault();
-    this.setState((prevState) => {
-      const expInfo = prevState.experiences.filter(
-        (experience) => experience.id === e.target.name
-      );
-      return {
-        experienceForms: prevState.experienceForms.concat(expInfo),
-        experiences: prevState.experiences.filter(
-          (experience) => experience.id !== e.target.name
-        ),
-      };
-    });
-  };
-
-  deleteExperience = (e) => {
-    e.preventDefault();
-    this.setState((prevState) => {
-      const updatedExp = prevState.experiences.filter(
-        (experience) => experience.id !== e.target.name
-      );
-      return {
-        ...prevState,
-        experiences: updatedExp,
-      };
-    });
-  };
-
-  render() {
-    const experienceViews = this.state.experiences.map((experience) => (
-      <WorkExperienceView
-        info={experience}
-        handleDelete={this.deleteExperience}
-        handleEdit={this.editExperience}
-        key={experience.id}
-      />
-    ));
-    const experienceForms = this.state.experienceForms.map((experienceForm) => (
-      <WorkExperienceForm
-        saveExp={this.saveExperience}
-        handleCancel={this.cancelExperience}
-        handleExpInput={this.handleExpInput}
-        info={experienceForm}
-        key={experienceForm.id}
-      />
-    ));
-
-    return (
-      <div className="experienceInfo">
-        <div className="experienceInfoViewDiv">{experienceViews}</div>
-        <div className="experienceInfoFormDiv">{experienceForms}</div>
-        <button
-          onClick={(e) => this.addExperience(e)}
-          className="buttons addBtns"
-        >
-          Add More
-        </button>
-      </div>
+      })
     );
-  }
-}
+  };
+
+  const saveExperience = (e, id) => {
+    e.preventDefault();
+    const experience = experienceForms.filter((form) => form.id === id);
+    setExperiences(experiences.concat(experience));
+
+    const updatedEduForm = experienceForms.filter(
+      (experienceForms) => experienceForms.id !== id
+    );
+    setExperienceForms(updatedEduForm);
+  };
+
+  const cancelExperience = (e) => {
+    const updateEduForm = experienceForms.filter(
+      (experience) => experience.id !== e.target.name
+    );
+    setExperienceForms(updateEduForm);
+  };
+
+  const editExperience = (e) => {
+    e.preventDefault();
+    const eduInfo = experiences.filter(
+      (experience) => experience.id === e.target.name
+    );
+    setExperienceForms(experienceForms.concat(eduInfo));
+
+    const updatedEdu = experiences.filter(
+      (experience) => experience.id !== e.target.name
+    );
+    setExperiences(updatedEdu);
+  };
+
+  const deleteExperience = (e) => {
+    e.preventDefault();
+    const updatedEdu = experiences.filter(
+      (experience) => experience.id !== e.target.name
+    );
+    setExperiences(updatedEdu);
+  };
+
+  const experienceViews = experiences.map((experience) => (
+    <WorkExperienceView
+      info={experience}
+      handleDelete={deleteExperience}
+      handleEdit={editExperience}
+      key={experience.id}
+    />
+  ));
+  const experienceFormsView = experienceForms.map((experienceForm) => (
+    <WorkExperienceForm
+      saveExp={saveExperience}
+      handleCancel={cancelExperience}
+      handleExpInput={handleExpInput}
+      info={experienceForm}
+      key={experienceForm.id}
+    />
+  ));
+
+  return (
+    <div className="experienceInfo">
+      <div className="experienceInfoViewDiv">{experienceViews}</div>
+      <div className="experienceInfoFormDiv">{experienceFormsView}</div>
+      <button onClick={(e) => addExperience(e)} className="buttons addBtns">
+        Add More
+      </button>
+    </div>
+  );
+};
 
 export default WorkExperience;
