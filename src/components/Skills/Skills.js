@@ -1,66 +1,41 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import '../../styles/SkillsStyle.css'
 import SkillsView from './SkillsView';
 import uniqid from 'uniqid';
-class Skills extends Component {
-  constructor(props) {
-    super(props);
 
-    this.state = {
-      skill: {
-        name: '',
-        id: uniqid(),
-      },
-      skills: [],
-    };
+const Skills = () => {
+  const [skill, setSkill] = useState({name: '', id: uniqid()});
+  const [skills, setSkills] = useState([])
 
-  }
-
-  handleChange = (e) => {
-    this.setState({
-      skill: {
+  const handleChange = (e) => {
+    setSkill({
         name: e.target.value,
-        id: this.state.skill.id,
-      }
-    })
+        id: skill.id,
+      })
   }
 
-  onSubmitSkill = (e) => {
+  const onSubmitSkill = (e) => {
     e.preventDefault();
-    this.setState({
-      skills: this.state.skills.concat(this.state.skill),
-      skill: {
-        name: '',
-        id: uniqid()
-      },
-    })
+    setSkills(skills.concat(skill));
+    setSkill({name: '', id: uniqid()})
   }
 
-  deleteSkill = (id) => {
-    this.setState({
-      skills: [...this.state.skills].filter(skill => skill.id !== id),
-      skill: {
-        name: '',
-        id: uniqid()
-      },
-    })
+  const deleteSkill = (id) => {
+    const newSkills = skills.filter(skill => skill.id !== id);
+    setSkills(newSkills);
   }
-
-  render() {
-    const { skill, skills } = this.state;
 
     return (
       <div className='skillsInfo'>
-        <form className='skillsForm' onSubmit={this.onSubmitSkill}>
+        <form className='skillsForm' onSubmit={onSubmitSkill}>
           <label htmlFor='skillInput'>Enter Skill</label>
-          <input onChange={this.handleChange} value={skill.name}
+          <input onChange={handleChange} value={skill.name}
                 type='text' id='skillInput' required/>
           <button type='submit' className='buttons addSkillsBtn'>Add</button>
         </form>
-        <SkillsView skills={skills} handleDelete={this.deleteSkill} />
+        <SkillsView skills={skills} handleDelete={deleteSkill} />
       </div>
     );
-  }
 }
 
 export default Skills;
